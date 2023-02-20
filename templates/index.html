@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wine Quality</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      animation: fadein 1s;
+    }
+
+    input[type=range] {
+      width: 80%;
+      margin: 10px 0;
+      -webkit-appearance: none;
+      background-color: #ddd;
+      height: 10px;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    input[type=range]:hover {
+      cursor: pointer;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #4CAF50;
+      cursor: pointer;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #4CAF50;
+      cursor: pointer;
+    }
+
+    input[type=submit] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    input[type=submit]:hover {
+      background-color: #3e8e41;
+    }
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Animations for slider value updates */
+    .slider-value {
+      display: inline-block;
+      background-color: #333;
+      color: #fff;
+      font-size: 14px;
+      padding: 2px 5px;
+      border-radius: 3px;
+      animation: slidein 0.5s;
+    }
+
+    @keyframes slidein {
+      from {
+        transform: translateY(-50%);
+      }
+
+      to {
+        transform: translateY(0);
+      }
+    }
+  </style>
+
+  <script>
+    function updateSliderValue(value, id) {
+      document.getElementById(id).innerHTML = value;
+    }
+
+  </script>
+
+</head>
+
+<body>
+  <h1>Wine Quality Prediction</h1>
+  <form action="/predict" method="post">
+    <p>Fixed Acidity:</p>
+    <input type="range" name="fixed_acidity" min="4" max="15" step="0.1"
+      oninput="updateSliderValue(this.value, 'fixed-acidity-value')" />
+    <span id="fixed-acidity-value">7.0</span>
+
+
+    <br />
+    <p>Volatile Acidity:</p>
+    <input type="range" name="volatile_acidity" min="0" max="2" step="0.01"
+      oninput="updateSliderValue(this.value, 'volatile-acidity-value')" />
+    <span id="volatile-acidity-value">1.0</span>
+    <br />
+
+
+
+    <p>Citric Acid:</p>
+    <input type="range" name="citric_acid" min="0" max="1" step="0.01"
+      oninput="updateSliderValue(this.value, 'citric-acid-value')" />
+    <span id="citric-acid-value">0.5</span>
+    <br />
+
+
+
+    <p>Residual Sugar:</p>
+    <input type="range" name="residual_sugar" min="0" max="15" step="0.1"
+      oninput="updateSliderValue(this.value, 'residual-sugar-value')" />
+    <span id="residual-sugar-value">7.5</span>
+    <br />
+
+
+
+    <p>Chlorides:</p>
+    <input type="range" name="chlorides" min="0" max="1" step="0.001"
+      oninput="updateSliderValue(this.value, 'chlorides-value')" />
+    <span id="chlorides-value">0.08</span>
+    <br />
+
+
+
+    <p>Free Sulfur Dioxide:</p>
+    <input type="range" name="free_sulfur_dioxide" min="1" max="72" step="1"
+      oninput="updateSliderValue(this.value, 'free-sulfur-dioxide-value')" />
+    <span id="free-sulfur-dioxide-value">36</span>
+    <br />
+
+
+
+    <p>Total Sulfur Dioxide:</p>
+    <input type="range" name="total_sulfur_dioxide" min="6" max="289" step="1"
+      oninput="updateSliderValue(this.value, 'total-sulfur-dioxide-value')" />
+    <span id="total-sulfur-dioxide-value">144</span>
+    <br />
+
+
+
+    <p>Density:</p>
+    <input type="range" name="density" min="0.99007" max="1.00369" step="0.00001"
+      oninput="updateSliderValue(this.value, 'density-value')" />
+    <span id="density-value">0.9965</span>
+    <br />
+
+
+
+    <p>pH:</p>
+    <input type="range" name="pH" min="2.74" max="4.01" step="0.01"
+      oninput="updateSliderValue(this.value, 'ph-value')" />
+    <span id="ph-value">3.375</span>
+    <br />
+
+
+
+    <p>Sulphates:</p>
+    <input type="range" name="sulphates" min="0.33" max="2.00" step="0.01"
+      oninput="updateSliderValue(this.value, 'sulphates-value')" />
+    <span id="sulphates-value">0.75</span>
+    <br />
+
+
+
+    <p>Alcohol:</p>
+    <input type="range" name="alcohol" min="8.4" max="14.9" step="0.1"
+      oninput="updateSliderValue(this.value, 'alcohol-value')" />
+    <span id="alcohol-value">11.0</span>
+    <br /><br />
+
+
+
+    <input type="submit" value="Predict" />
+  </form>
+
+
+
+</body>
+
+</html>
