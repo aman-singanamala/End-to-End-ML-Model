@@ -4,11 +4,13 @@ import pickle as pk
 import numpy as np
 
 
+
+
 import joblib
 
 app = Flask(__name__)
 
-model= joblib.load('rfc_model.h5')
+model= joblib.load('rfc_model.pkl')
 
 
 ## Define the route for the home page
